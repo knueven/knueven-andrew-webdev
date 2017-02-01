@@ -1,7 +1,29 @@
 input.form-control {
     margin-bottom: 5px;
 }
+.navbar {
+}
+.navbar-default .navbar-brand{
+    color:#FFF;
+}
+.navbar-default .navbar-link {
+	color:#FFF;
+}
+.navbar-default .glyphicon {
+	color:#FFF;
+}
+.navbar-fixed-top {
+}
 
 body {
-    padding-top: 36px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 100%;
+}
+.list-group{
+    margin-bottom: 55px;
+    padding-top: 40px;
+}
+li.borderless {
+  border: 0 none;
 }
