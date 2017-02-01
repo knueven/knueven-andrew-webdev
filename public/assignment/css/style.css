@@ -1,8 +1,7 @@
 input.form-control {
     margin-bottom: 5px;
 }
-.navbar {
-}
+
 .navbar-default .navbar-brand{
     color:#FFF;
 }
@@ -31,4 +30,7 @@ body {
 }
 li.borderless {
   border: 0 none;
+}
+.blue {
+    color: blue;
 }
