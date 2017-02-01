@@ -15,6 +15,11 @@ input.form-control {
 .navbar-fixed-top {
 }
 
+.sb-form-padding{
+    padding-top: 50px;
+    margin-bottom: 20px;
+}
+
 body {
     padding-top: 15px;
     padding-bottom: 15px;
