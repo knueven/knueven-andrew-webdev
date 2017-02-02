@@ -5,7 +5,9 @@ input.form-control {
 .navbar-default .bg-primary .navbar-brand {
 	color: #FFF;
 }
-
+.navbar-default .bg-primary .navbar-link {
+	color: #FFF;
+}
 .sb-padding{
     padding-top: 50px;
     margin-bottom: 20px;
