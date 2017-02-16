@@ -1,9 +1,9 @@
 <div class="container">
     <h1>Register</h1>
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
+    <div ng-if="model.error" class="alert alert-danger" role="alert">
        {{model.error}}
     </div>
-    
+
     <form>
       <div class="form-group">
         <label for="firstName">First Name</label>
