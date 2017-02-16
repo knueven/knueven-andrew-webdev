@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("loginController", loginController);
+        .controller("LoginController", LoginController);
 
-    function loginController(UserService, $location) {
+    function LoginController(UserService, $location) {
         var vm = this;
         vm.login = login;
 
@@ -12,7 +12,7 @@
             if (loginUser != null) {
                 $location.url('/user/' + loginUser._id);
             } else {
-                vm.error = 'user not found';
+                vm.error = 'User not found';
             }
         }
     }
