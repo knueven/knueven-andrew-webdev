@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div>
-            <a class="navbar-brand glyphicon glyphicon-chevron-left" href="website-list.html">
+            <a class="navbar-brand glyphicon glyphicon-chevron-left" href="#/user/{{model.userId}}/website">
             </a>
             <a href="#" class="navbar-brand">
                 Pages
             </a>
-            <a class="navbar-brand pull-right glyphicon glyphicon-plus" href="page-new.html">
+            <a class="navbar-brand pull-right glyphicon glyphicon-plus" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
             </a>
         </div>
     </div>
@@ -17,46 +17,15 @@
 
     <ul class="list-group">
 
-        <li class="list-group-item borderless">
-            <a href="widget-list.html">
-                Blog Post
+       <li class="list-group-item borderless" ng-repeat="page in model.pages">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
+                {{page.name}}
             </a>
-            <a href="page-edit.html" class="pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
         </li>
-        <li class="list-group-item borderless">
-            <a href="widget-list.html">
-                Blogs
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="widget-list.html">
-                Home
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="widget-list.html">
-                About
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="widget-list.html">
-                Contact Us
-            </a>
-            <a href="page-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
+         
     </ul>
 </div>
 
@@ -67,7 +36,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link blue pull-right" href="profile.html">
+                <a class="navbar-link blue pull-right" href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
