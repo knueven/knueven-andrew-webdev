@@ -16,8 +16,6 @@
                     { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
                 ];
 
-        var options = [1, 2, 3, 4, 5, 6];
-
         var api = {
             "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
@@ -28,59 +26,53 @@
         };
         return api;
 
-        function getOptions() {
-            return options;
+        function createWidget(pageId, widget) {
+            widget.pageId = pageId;
+            widget._id = (new Date()).getTime().toString();
+            widgets.push(widget);
+            return widget;
         }
 
         function findWidgetsByPageId(pageId) {
-            var wg = [];
-            for (var w in widgets) {
-                if (widgets[w].pageId == pageId) {
-                    wg.push(widgets[w]);
+            var widgetPages = []
+            for(var w in widgets) {
+                if(widgets[w].pageId == pageId) {
+                    widgetPages.push(widgets[w]);
                 }
             }
-            return wg;
+            return widgetPages;
         }
 
-
         function findWidgetById(widgetId) {
-            for (var w in widgets) {
-                if (widgets[w]._id == widgetId) {
+            for(var w in widgets) {
+                if(widgets[w]._id == widgetId) {
                     return angular.copy(widgets[w]);
                 }
             }
             return null;
         }
 
-        function createWidget(pageId, widget) {
-            widgets.push(widget);
+        function updateWidget(widgetId, widget) {
+            for(var w in widgets) {
+                if(widgets[w]._id == widgetId) {
+                    widgets[w] = widget;
+                    return widgets[w];
+                }
+            }
+            return null;
         }
 
         function deleteWidget(widgetId) {
-            for (var w in widgets) {
-                if (widgets[w]._id == widgetId) {
+            for(var w in widgets) {
+                if(widgets[w]._id == widgetId) {
                     widgets.splice(w, 1);
                 }
             }
         }
 
-        function updateWidget(widgetId, widget) {
-            for (var w in widgets) {
-                if (widgets[w]._id == widgetId) {
-                    if (widget.widgetType == "HEADER") {
-                        widgets[w].text = widget.text;
-                        widgets[w].size = widget.size;
-                    }
-                    else if ((widget.widgetType == "IMAGE") || (widget.widgetType == "YOUTUBE")) {
-                        widgets[w].url = widget.url;
-                        widgets[w].width = widget.width;
-                    }
-                    else if (widget.widgetType == "HTML") {
-                        widgets[w].text = widget.text;
-                    }
-                    return;
-                }
-            }
+        function getOptions() {
+            var options = [1,2,3,4,5,6];
+            return options;
         }
     }
 
