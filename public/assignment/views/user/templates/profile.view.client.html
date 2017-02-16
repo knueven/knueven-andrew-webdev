@@ -14,7 +14,7 @@
 </nav>
 
 
-    <div class="container-fluid sb-padding">
+    <div class="container-fluid padding">
         <h1>Profile</h1>
         <form>
             <div class="form-group">
@@ -36,9 +36,11 @@
         </form>
 
         <a class="btn btn-primary btn-block"
-           href="../website/website-list.html">Websites</a>
+           href="#/user/{{model.user._id}}/website">Websites</a>
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deleteUser(model.user._id)">Delete User</a>
         <a class="btn btn-danger  btn-block"
-           href="login.html">Logout</a>
+           href="#/login">Logout</a>
     </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
