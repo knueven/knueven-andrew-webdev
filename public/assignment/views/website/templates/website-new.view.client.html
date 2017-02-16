@@ -1,16 +1,16 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid bg-primary">
         <div class="col-sm-4 hidden-xs">
-            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left" href="website-list.html"></a>
+            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left" href="#/user/{{model.userId}}/website"></a>
             <div class="navbar-header">
             <a href="#" class="navbar-brand">Websites</a>
             </div>
-            <a href="website-new.html" class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
+            <a href="#/user/{{model.userId}}/website/new" class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
         </div>
 
         <div class="col-sm-8">
-            <a href="website-list.html" class="glyphicon glyphicon-chevron-left navbar-brand"></a>
-            <a href="website-list.html" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
+            <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left navbar-brand"></a>
+            <a ng-click="model.createWebsite(website)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
             <div class="navbar-header">
             <a class="navbar-brand no-left-padding no-left-margin" href="#">New Website</a>
             </div>
@@ -18,38 +18,14 @@
     </div>
 </nav>
 
-<div class="row container-fluid">
+<div class="container-fluid">
     <div class="col-sm-4 hidden-xs">
         <ul class="list-group">
-            <li class="list-group-item borderless">
-                <a href="page-list.html">
-                    Address Book App
+            <li class="list-group-item borderless" ng-repeat="website in model.websites">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                    {{website.name}}
                 </a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="page-list.html">
-                    Blogger
-                </a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="page-list.html">
-                    Blogging App
-                </a>
-                <a href="website-edit.html" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </li>
-            <li class="list-group-item borderless">
-                <a href="page-list.html">
-                    Script Testing App
-                </a>
-                <a href="website-edit.html" class="pull-right">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
@@ -59,14 +35,20 @@
     <div class="col-sm-8">
         <div class="padding">
         <label for="Name">Name</label>
-        <input placeholder="Name"
+        <input ng-model="website.name"
+               placeholder="Website Name"
                class="form-control" id="Name"/>
 
         <label for="website-description">Description</label>
-        <textarea placeholder="Description"
+        <textarea ng-model="website.description"
+                  placeholder="Website Description"
                   class="form-control"
-                  rows="5"
+                  rows="4"
                   id="website-description"></textarea>
+
+        <a ng-click="model.createWebsite(website)" class="btn btn-primary btn-block">
+            Create
+        </a>
         </div>
     </div>
 </div>
@@ -75,7 +57,7 @@
     <div class="container-fluid bg-primary">
        <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="profile.html">
+                <a class="navbar-link pull-right" href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

@@ -35,7 +35,7 @@
         function findWidgetsByPageId(pageId) {
             var wg = [];
             for (var w in widgets) {
-                if (widgets[w].pageId === pageId) {
+                if (widgets[w].pageId == pageId) {
                     wg.push(widgets[w]);
                 }
             }

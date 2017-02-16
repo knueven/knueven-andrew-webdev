@@ -68,7 +68,7 @@
         function findUserById(uid) {
             for (var u in users) {
                 var user = users[u];
-                if (user._id === uid) {
+                if (user._id == uid) {
                     return angular.copy(user);
                 }
             }
@@ -78,7 +78,7 @@
         function findUserByUsername(username) {
             for (var u in users) {
                 var user = users[u];
-                if (user.username === username) {
+                if (user.username == username) {
                     return angular.copy(user);
                 }
             }
@@ -88,8 +88,8 @@
         function findUserByCredentials(username, password) {
             for (var u in users) {
                 var user = users[u];
-                if (user.username === username &&
-                    user.password === password) {
+                if (user.username == username &&
+                    user.password == password) {
                     return angular.copy(user);
                 }
             }
@@ -99,7 +99,7 @@
         function updateUser(userId, user) {
             for (var u in users) {
                 var olduser = users[u];
-                if (olduser._id === userId) {
+                if (olduser._id == userId) {
                     users[u].firstName = user.firstName;
                     users[u].lastName = user.lastName;
                     users[u].email = user.email;

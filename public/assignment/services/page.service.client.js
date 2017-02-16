@@ -24,42 +24,41 @@
             page.websiteId = websiteId;
             page._id = (new Date()).getTime().toString();
             pages.push(page);
+            return page;
+        }
+
+        function findPageByWebsiteId(websiteId) {
+            var websitePages = []
+            for(var p in pages) {
+                if(pages[p].websiteId == websiteId) {
+                    websitePages.push(pages[p]);
+                }
+            }
+            return websitePages;
         }
 
         function findPageById(pageId) {
-            for (var w in pages) {
-                if (pages[w]._id === pageId) {
-                    return angular.copy(pages[w]);
+            for(var p in pages) {
+                if(pages[p]._id == pageId) {
+                    return angular.copy(pages[p]);
                 }
             }
             return null;
         }
 
-        function findPageByWebsiteId(websiteId) {
-            var pg = [];
-            for (var w in pages) {
-                if (pages[w].websiteId === websiteId) {
-                    pg.push(pages[w]);
+        function updatePage(pageId, page) {
+            for(var p in pages) {
+                if(pages[p]._id == pageId) {
+                    pages[p] = page;
+                    return pages[p];
                 }
             }
-            return pg;
         }
 
         function deletePage(pageId) {
-            for (var w in pages) {
-                if (pages[w]._id === pageId) {
-                    pages.splice(w, 1);
-                }
-            }
-        }
-
-
-        function updatePage(pageId, page) {
-            for (var w in pages) {
-                if (pages[w]._id === pageId) {
-                    pages[w].name = page.name;
-                    pages[w].description = page.description;
-                    return pages;
+            for(var p in pages) {
+                if(pages[p]._id == pageId) {
+                    pages.splice(p, 1);
                 }
             }
         }

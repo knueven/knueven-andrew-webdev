@@ -1,6 +1,9 @@
 input.form-control {
     margin-bottom: 5px;
 }
+.profile-block {
+    margin-top: 25px;
+}
 
 .navbar-default .bg-primary .navbar-brand {
 	color: #FFF;

@@ -1,10 +1,9 @@
 <div class="container">
     <h1>Register</h1>
-    <div ng-if="model.error" class="alert alert-danger" role="alert">
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
        {{model.error}}
     </div>
 
-    <form>
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input ng-model="user.firstName"
@@ -45,9 +44,8 @@
                id="confirm-password"
                placeholder="Confirm Password" />
       </div>
-    </form>
     <a class="btn btn-primary btn-block"
-       ng-click="model.register(model.user)">Register</a>
+       ng-click="model.register(user)">Register</a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Cancel</a>
 </div>

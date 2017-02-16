@@ -1,40 +1,8 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div>
-            <a href="widget-list.html" class="navbar-brand glyphicon glyphicon-chevron-left">
-            </a>
-        </div>
-        <div>
-            <a class="navbar-brand">
-                Widget Edit
-            </a>
-            <a class="navbar-brand glyphicon glyphicon-ok pull-right" href="widget-list.html">
-            </a>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid padding">
-        <form>
-            <div class="form-group">
-                <label for="username">Name</label>
-                <input type="text" class="form-control" id="username" placeholder="username">
-            </div>
-            <div class="form-group">
-                <label for="text_id">Text</label>
-                <input id="text_id" type="text" class="form-control" placeholder="Image text">
-            </div>
-            <div class="form-group">
-                <label for="size">Size</label>
-                <input id="size" type="text" class="form-control" value="3">
-            </div>        
-            <a class="btn btn-danger  btn-block" href="widget-list.html">Delete</a>
-        </form>
+<div ng-switch="widget.size">
+    <h1 ng-switch-when="1">{{widget.text}}</h1>
+    <h2 ng-switch-when="2">{{widget.text}}</h2>
+    <h3 ng-switch-when="3">{{widget.text}}</h3>
+    <h4 ng-switch-when="4">{{widget.text}}</h4>
+    <h5 ng-switch-when="5">{{widget.text}}</h5>
+    <h6 ng-switch-when="6">{{widget.text}}</h6>
 </div>
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <a class="navbar-brand glyphicon glyphicon-user pull-right" href="../user/profile.html">
-        </a>
-    </div>
-</nav>

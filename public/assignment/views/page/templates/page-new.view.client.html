@@ -14,32 +14,61 @@
 
 
 <div class="row container-fluid">
-    <div class="col-sm-4 hidden-xs">
+    <div class="col-sm-4 hidden-xs profile-block">
+
+        <div ng-show="model.error" class="alert alert-danger" role="alert">
+            {{model.error}}
+        </div>
+
         <ul class="list-group">
-            <li class="list-group-item borderless" ng-repeat="page in model.pages">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
-                    {{page.name}}
-                </a>
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+            <li class="list-group-item borderless list-color">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Name
+                        <a>
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-6">
+                        <span class="pull-right">Edit</span>
+                    </div>
+                </div>
+            </li>
+            <li ng-repeat="page in model.pages" class="list-group-item borderless list-color">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}/widget">
+                            {{page.name}}
+                        </a>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="#/user/{{model.userId}}/website/{{page.websiteId}}/page/{{page._id}}">
+                            <span class="glyphicon glyphicon-cog pull-right"></span>
+                        </a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
-
-    <div class="col-sm-8">
-        <div class="padding">
-            <label for="Name">Name</label>
-            <input ng-model="page.name"
-                   placeholder="Page Name"
-                   class="form-control" id="Name"/>
-
-            <label for="Title">Title</label>
-            <input  ng-model="page.description"
-                    placeholder="Page Title"
-                      class="form-control"
-                      id="Title">
-            <a ng-click= "model.createPage(page)" class="btn btn-primary btn-block">
+    <div class="col-sm-8 padding">
+        <div class="container-fluid">
+            <div class="form-group">
+                <label for="page-name">Name</label>
+                <input ng-model="page.name"
+                       type="text"
+                       placeholder="Page Name"
+                       class="form-control"
+                       id="page-name"/>
+            </div>
+            <div class="form-group">
+                <label for="page-title">Title</label>
+                <input ng-model="page.title"
+                       type="text"
+                       placeholder="Page Title"
+                       class="form-control"
+                       id="page-title"/>
+            </div>
+            <a ng-click="model.create(page)" class="btn btn-primary btn-block">
                 Create
             </a>
         </div>
@@ -52,7 +81,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link blue pull-right" href="profile.html">
+                <a class="navbar-link blue pull-right" href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

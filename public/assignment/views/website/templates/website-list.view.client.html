@@ -1,62 +1,65 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid bg-primary">
         <div>
-            <a class="navbar-brand pull-left glyphicon glyphicon-chevron-left" href="profile.html">
+            <a class="navbar-brand pull-left glyphicon glyphicon-chevron-left" href="#/user/{{model.userId}}">
             </a>
 
-        <a href="page-list.html" class="navbar-brand">
+        <a href="#/user/{{model.userId}}/website" class="navbar-brand">
                 Website List
             </a>
-        <a class="glyphicon glyphicon-plus pull-right navbar-brand" href="website-new.html">
+        <a class="glyphicon glyphicon-plus pull-right navbar-brand" href="#/user/{{model.userId}}/website/new">
         </a>
-         
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
-
-    <ul class="list-group">
-
-        <li class="list-group-item borderless">
-            <a href="page-list.html">
-                Address Book App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="page-list.html">
-                Blogger
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="page-list.html">
-                Blogging App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-        <li class="list-group-item borderless">
-            <a href="page-list.html">
-                Script Testing App
-            </a>
-            <a href="website-edit.html" class="pull-right">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-        </li>
-    </ul>
+    <div class="profile-block">
+        <ul class="list-group">
+            <li class="list-group-item borderless list-color">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Name
+                    </div>
+                    <div class="col-xs-3 hidden-xs">
+                        Description
+                    </div>
+                    <div class="col-xs-2 hidden-xs">
+                        Owner
+                    </div>
+                    <div class="col-xs-6 col-sm-1">
+                        <span class="pull-right">Edit</span>
+                    </div>
+                </div>
+            </li>
+            <li ng-repeat="website in model.websites" class="list-group-item borderless list-color">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <a href="#/user/{{website.developerId}}/website/{{website._id}}/page">
+                            {{website.name}}
+                        </a>
+                    </div>
+                    <div class="col-xs-3 hidden-xs">
+                        {{website.description | date}}
+                    </div>
+                    <div class="col-xs-2 hidden-xs">
+                        {{website.developerId}}
+                    </div>
+                    <div class="col-sm-1 col-xs-6">
+                        <a href="#/user/{{website.developerId}}/website/{{website._id}}" class="pull-right">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid bg-primary">
-        <a class="glyphicon glyphicon-user pull-right navbar-brand pull-right" href="profile.html">
+        <a class="glyphicon glyphicon-user pull-right navbar-brand pull-right" href="#/user/{{model.userId}}">
             </a>
         </div>      
     </div>
