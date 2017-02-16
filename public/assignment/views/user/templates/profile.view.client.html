@@ -23,7 +23,7 @@
         <div class="alert alert-success" ng-show="model.message" role="alert">
             {{model.message}}
         </div>
-
+    <form>
         <div class="form-group">
             <label for="username">Username</label>
             <input ng-model="model.user.username" type="text" class="form-control" id="username" value="Knueven">
@@ -40,6 +40,7 @@
             <label for="last-name">Last Name</label>
             <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" value="Knueven">
         </div>
+    </form>
 
         <a class="btn btn-primary btn-block"
            href="#/user/{{model.user._id}}/website">Websites</a>

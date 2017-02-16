@@ -6,9 +6,18 @@
     function ProfileController($routeParams, UserService, $location) {
         var vm = this;
         var userId = $routeParams['uid'];
-        vm.user = UserService.findUserById(userId);
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+
+        function init() {
+            var user = UserService.findUserById(userId);
+            if(user) {
+                vm.user = user;
+            } else {
+                vm.error = "A user with this ID does not exist!"
+            }
+        }
+        init();
 
         function updateUser(newUser) {
             var user = UserService.updateUser(userId, newUser);

@@ -7,6 +7,11 @@
         var vm = this;
         vm.register = register;
 
+        function init() {
+
+        }
+        init();
+
         function register(user) {
             var loginUser = UserService.findUserByCredentials(user.username, user.password);
             if (loginUser == null) {
