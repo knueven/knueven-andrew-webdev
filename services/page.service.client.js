@@ -1,66 +1,59 @@
-(function () {
-    angular
-        .module("WebAppMaker")
-        .factory("PageService", PageService);
+'use strict';
 
-    function PageService() {
-        var pages = [
-            {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-            {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-            {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"},
-            {"_id": "544", "name": "Post 4", "websiteId": "567", "description": "Lorem"}
-        ];
+module.exports = app => {
+  app.post( `/api/website/:websiteId/${ modelName }`, createPage ),
+  app.get( `/api/website/:websiteId/${ modelName }`, findAllPagesForWebsite ),
+  app.get( `/api/website/:pageId`, findPageById ),
+  app.put( `/api/website/:pageId`, updatePage ),
+  app.delete( `/api/website/:pageId`, deletePage )
+};
+   
+let pages = [
+    {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
+    {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
+    {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"},
+    {"_id": "544", "name": "Post 4", "websiteId": "567", "description": "Lorem"}
+];
 
-        var api = {
-            "createPage": createPage,
-            "findPageById": findPageById,
-            "deletePage": deletePage,
-            "updatePage": updatePage,
-            "findPageByWebsiteId": findPageByWebsiteId
-        };
-        return api;
+function createPage(req, res) {
+    var page = req.body.page;
+    page._id = (new Date()).getTime().toString();
+    page.websiteId = req.params.websiteId;
+    pages.push(page);
+    res.json(page);
+}
 
-        function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime().toString();
-            pages.push(page);
-            return page;
-        }
+function findAllPagesForWebsite(req, res) {
+  var websiteId = req.params.websiteId;
+  var websitePages = pages.filter(page => {
+    return (page.websiteId === websiteId);
+  });
+  res.json(websitePages);
+};
 
-        function findPageByWebsiteId(websiteId) {
-            var websitePages = []
-            for(var p in pages) {
-                if(pages[p].websiteId == websiteId) {
-                    websitePages.push(pages[p]);
-                }
-            }
-            return websitePages;
-        }
+function findPageById(req, res) {
+  var pageId = req.params.pageId;
 
-        function findPageById(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id == pageId) {
-                    return angular.copy(pages[p]);
-                }
-            }
-            return null;
-        }
+  var page = pages.find( page => {
+    return (page._id === pageId);
+  });
+  res.json(page);
+};
 
-        function updatePage(pageId, page) {
-            for(var p in pages) {
-                if(pages[p]._id == pageId) {
-                    pages[p] = page;
-                    return pages[p];
-                }
-            }
-        }
 
-        function deletePage(pageId) {
-            for(var p in pages) {
-                if(pages[p]._id == pageId) {
-                    pages.splice(p, 1);
-                }
-            }
+function updatePage(pageId, page) {
+    for(var p in pages) {
+        if(pages[p]._id == pageId) {
+            pages[p] = page;
+            return pages[p];
         }
     }
-})();
+}
+
+function deletePage(pageId) {
+    for(var p in pages) {
+        if(pages[p]._id == pageId) {
+            pages.splice(p, 1);
+        }
+    }
+}
