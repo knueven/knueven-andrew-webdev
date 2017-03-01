@@ -34,26 +34,34 @@ function findAllPagesForWebsite(req, res) {
 function findPageById(req, res) {
   var pageId = req.params.pageId;
 
-  var page = pages.find( page => {
+  var page = pages.find(page => {
     return (page._id === pageId);
   });
   res.json(page);
 };
 
 
-function updatePage(pageId, page) {
-    for(var p in pages) {
-        if(pages[p]._id == pageId) {
-            pages[p] = page;
-            return pages[p];
+function updatePage(req,res){
+    var pageId = req.params.pageId;
+    var page = req.body;
+    var updatedPage = null;
+    for(var p in pages){
+        var curPage = pages[p];
+        if(curPage._id === pageId){
+            curPage.name = page.name;
+            curPage.description = page.description;
+            updatedPage = curPage;
+            break;
         }
     }
-}
+    res.json(updatedPage);
+};
 
-function deletePage(pageId) {
-    for(var p in pages) {
-        if(pages[p]._id == pageId) {
-            pages.splice(p, 1);
-        }
-    }
-}
+function deletePage(req,res){
+    let pageId = req.params.pageId;
+    pages = pages.filter(page => {
+        return (page._id !== pageId);
+    });
+
+    res.sendStatus(200);
+};
