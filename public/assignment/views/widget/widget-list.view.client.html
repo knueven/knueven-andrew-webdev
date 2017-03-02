@@ -17,13 +17,13 @@
       <div class="widget__icon-container" ng-repeat="widget in model.widgets track by $index">
         <div ng-switch="widget.widgetType">
           <div ng-switch-when="HEADING">
-            <ng-include src="'views/widget/widget-view/heading.view.client.html'">
+            <ng-include src="'views/widget/viewers/widget-heading.view.client.html'">
           </div>
           <div ng-switch-when="IMAGE">
-              <ng-include src="'views/widget/widget-view/image.view.client.html'">
+              <ng-include src="'views/widget/viewers/widget-image.view.client.html'">
           </div>
           <div ng-switch-when="YOUTUBE">
-            <ng-include src="'views/widget/widget-view/youtube.view.client.html'">
+            <ng-include src="'views/widget/viewers/widget-youtube.view.client.html'">
           </div>
         </div>
       </div>

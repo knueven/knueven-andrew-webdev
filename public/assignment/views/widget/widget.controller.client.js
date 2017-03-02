@@ -70,6 +70,10 @@
         var vm = this;
         vm.update = updateWidget;
         vm.deleteWidget = deleteWidget;
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.widgetId = $routeParams.wgid;
+        vm.pageId = $routeParams.pid;
 
         function updateWidget( widget ) {
             WidgetService.updateWidget( vm.widgetId, widget )

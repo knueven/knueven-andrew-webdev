@@ -42,3 +42,20 @@ li.borderless {
 .blue {
     color: blue;
 }
+
+.widget__icon-container {
+  position: relative;
+}
+
+.widget__icons {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+
+  background-color: #FFF;
+  border-radius: 2px;
+}
+
+.widget__icons a {
+  font-size: 16px;
+}

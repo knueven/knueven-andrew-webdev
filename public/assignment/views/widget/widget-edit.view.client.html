@@ -18,23 +18,21 @@
     </div>
 </nav>
 
-<div ng-switch="model.widget.widgetType" class="profile-block">
-
-    <div ng-show="model.error" class="alert alert-danger" role="alert">
-        {{model.error}}
-    </div>
+<div class="container-fluid padding">
+<div ng-switch="model.widget.widgetType">
 
     <div ng-switch-when="HEADING">
-        <ng-include src="'views/widget/editors/heading.view.client.html'"></ng-include>
+        <ng-include src="'views/widget/editors/widget-heading-edit.view.client.html'"></ng-include>
     </div>
 
     <div ng-switch-when="IMAGE">
-        <ng-include src="'views/widget/editors/image.view.client.html'"></ng-include>
+        <ng-include src="'views/widget/editors/widget-image-edit.view.client.html'"></ng-include>
     </div>
 
     <div ng-switch-when="YOUTUBE">
-        <ng-include src="'views/widget/editors/youtube.view.client.html'"></ng-include>
+        <ng-include src="'views/widget/editors/widget-youtube-edit.view.client.html'"></ng-include>
     </div>
+</div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
