@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = app => {
-  app.post( `/api/page/:pageId/${ modelName }`, createWidget ),
-  app.get( `/api/page/:pageId/${ modelName }`, findAllWidgetsForPage ),
+  app.post( `/api/page/:pageId/widget`, createWidget ),
+  app.get( `/api/page/:pageId/widget`, findAllWidgetsForPage ),
   app.get( `/api/widget/:widgetId`, findWidgetById ),
   app.put( `/api/widget/:widgetId`, updateWidget ),
   app.delete( `/api/$widget/:widgetId`, deleteWidget ),

@@ -1,14 +1,12 @@
-'use strict';
-
 module.exports = app => {
-  app.post( `/api/website/:websiteId/${ modelName }`, createPage ),
-  app.get( `/api/website/:websiteId/${ modelName }`, findAllPagesForWebsite ),
+  app.post( `/api/website/:websiteId/page`, createPage ),
+  app.get( `/api/website/:websiteId/page`, findAllPagesForWebsite ),
   app.get( `/api/website/:pageId`, findPageById ),
   app.put( `/api/website/:pageId`, updatePage ),
   app.delete( `/api/website/:pageId`, deletePage )
 };
    
-let pages = [
+var pages = [
     {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
     {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
     {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"},
@@ -43,7 +41,7 @@ function findPageById(req, res) {
 
 function updatePage(req,res){
     var pageId = req.params.pageId;
-    var page = req.body;
+    var page = req.body.page;
     var updatedPage = null;
     for(var p in pages){
         var curPage = pages[p];
@@ -58,10 +56,9 @@ function updatePage(req,res){
 };
 
 function deletePage(req,res){
-    let pageId = req.params.pageId;
+    var pageId = req.params.pageId;
     pages = pages.filter(page => {
         return (page._id !== pageId);
     });
-
     res.sendStatus(200);
 };

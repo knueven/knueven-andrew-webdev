@@ -9,7 +9,13 @@
         vm.userId = userId;
         
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
+            WebsiteService.findWebsitesByUser(vm.userId)
+            .then(res => {
+                vm.websites = res.data;
+                }, res => {
+                vm.error = true;
+            });
+        
         }
         init();
     }

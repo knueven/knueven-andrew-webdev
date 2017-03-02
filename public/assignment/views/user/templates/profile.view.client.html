@@ -1,12 +1,12 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid bg-primary">
         <div class="navbar-header col-xs-7 pull-left">
-                <a class="navbar-brand pull-left" href="#/user/{{model.user._id}}">
+                <a class="navbar-brand pull-left" href="#/user/{{model.userId}}">
                     Profile
                 </a>
             </div>
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="#/user/{{model.user._id}}/website">
+                <a class="navbar-link pull-right" ng-click="model.updateUser(model.user)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -26,30 +26,30 @@
     <form>
         <div class="form-group">
             <label for="username">Username</label>
-            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Knueven">
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
         </div>
         <div class="form-group">
             <label for="email">Email address</label>
-            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="knuckles@ccs.neu.edu">
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="Password">
         </div>
         <div class="form-group">
             <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Andrew">
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="firstName">
         </div>
         <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Knueven">
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="lastName">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="password">
+            <input ng-model="model.user.password" type="password" class="form-control" id="password" placeholder="Change Password">
         </div>
     </form>
 
         <a class="btn btn-primary btn-block"
-           href="#/user/{{model.user._id}}/website">Websites</a>
+           href="#/user/{{model.userId}}/website">Websites</a>
         <a class="btn btn-danger btn-block"
-           ng-click="model.deleteUser(model.user._id)">Unregister User</a>
+           ng-click="model.deleteUser(model.userId)">Unregister User</a>
         <a class="btn btn-danger  btn-block"
            href="#/login">Logout</a>
     </div>
@@ -57,7 +57,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid bg-primary">
         <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="#/user/{{model.user._id}}">
+                <a class="navbar-link pull-right" href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

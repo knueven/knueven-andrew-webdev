@@ -5,32 +5,36 @@
 
     function ProfileController($routeParams, UserService, $location) {
         var vm = this;
-        var userId = $routeParams['uid'];
+        vm.userId = $routeParams['uid'];
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
 
         function init() {
-            var user = UserService.findUserById(userId);
-            if(user) {
-                vm.user = user;
-            } else {
-                vm.error = "A user with this ID does not exist!"
-            }
+            var user = UserService.findUserById(vm.userId)
+            .then(res => {
+                user = res.data;
+            },
+            res => {
+                vm.userNotFound = true;
+            });
         }
         init();
 
         function updateUser(newUser) {
-            var user = UserService.updateUser(userId, newUser);
-            if (user == null) {
-                vm.error = "Unable to update user, error!";
-            } else {
+            var user = UserService.updateUser(vm.userId, newUser)
+            .then(res => {
                 vm.message = "User was successfully updated!";
-            }
+            },
+            res => {
+                vm.error = true;
+            });
         }
         
         function deleteUser (userId) {
-            UserService.deleteUser(userId);
-            $location.url("/login");
+            UserService.deleteUser(vm.userId).
+            then(res => {
+                $location.url("/login");
+            });
         }
 
     }

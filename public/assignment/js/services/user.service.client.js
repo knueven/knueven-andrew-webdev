@@ -2,7 +2,6 @@
   angular.module('WebAppMaker').factory('UserService', UserService);
 
   function UserService($http) {
-    const apiRoute = '/api/user/';
 
     let api = {
       createUser,
@@ -26,7 +25,7 @@
     function findUserById(userId) {
       return $http({
         method: 'GET',
-        url: `/api/user/${userId}`
+        url: `/api/user/${ userId }`
       });
     };
 
@@ -45,8 +44,8 @@
         method: 'GET',
         url: `/api/user`,
         params: {
-          username,
-          password
+          username: username,
+          password: password
         }
       });
     };
@@ -56,7 +55,7 @@
         method: 'PUT',
         url: `/api/user/${userId}`,
         data: {
-          user
+          user: user
         }
       });
 

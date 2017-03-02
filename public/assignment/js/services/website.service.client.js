@@ -18,7 +18,7 @@
     function createWebsite(userId, website) {
       return $http({
         method: 'POST',
-        url: `$/api/user/${userId}/website`,
+        url: `/api/user/${userId}/website`,
         data: { website: website }
       });
     };
@@ -26,7 +26,7 @@
     function findWebsitesByUser(userId) {
       return $http({
         method: 'GET',
-        url: `/api/user/${ userId }/website`,
+        url: `/api/user/${userId}/website`,
       })
     }
 
@@ -42,7 +42,7 @@
         method: 'PUT',
         url: `/api/website/${websiteId}`,
         data: {
-          website
+          website: website
         }
       });
     };
@@ -54,4 +54,4 @@
       });
     };
   }
-} )();
+})();

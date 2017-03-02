@@ -10,7 +10,7 @@
 
         <div class="col-sm-8">
             <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left navbar-brand visible-xs"></a>
-            <a ng-click="model.update(model.website)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
+            <a ng-click="model.updateWebsite(model.website)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin" href="#">Edit Website</a>
             </div>
@@ -62,7 +62,6 @@
                 <input ng-model="model.website.name"
                        type="text"
                        placeholder="Name"
-                       value="ToDoList"
                        class="form-control"
                        id="website-name"/>
             </div>
@@ -74,7 +73,7 @@
                           class="form-control"
                           id="website-description"></textarea>
             </div>
-            <a ng-click="model.update(model.website)" class="btn btn-primary btn-block">
+            <a ng-click="model.updateWebsite(model.website)" class="btn btn-primary btn-block">
                 Update
             </a>
             <a ng-click="model.deleteWebsite()" class="btn btn-danger btn-block">

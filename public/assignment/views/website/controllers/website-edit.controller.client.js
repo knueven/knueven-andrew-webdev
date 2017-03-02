@@ -5,35 +5,46 @@
 
     function EditWebsiteController(WebsiteService, $routeParams, $location) {
         var vm = this;
-        vm.update = update;
+        vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
 
         var userId = $routeParams.uid;
         vm.userId = userId;
+        vm.websiteId = $routeParams.wid;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
-            vm.website = WebsiteService.findWebsiteById($routeParams.wid);
+            WebsiteService.findWebsiteById(vm.websiteId)
+            .then(res => {
+              vm.website = res.data
+            }, res => {
+              vm.websiteNotFound = true;
+            });
+
+            WebsiteService.findWebsitesByUser(vm.userId)
+            .then(res => {
+              vm.websites = res.data;
+            }, res => {
+              vm.websitesNotFound = true;
+            });
         }
         init();
 
-        function update(newWebsite) {
-            var website = WebsiteService.updateWebsite(newWebsite._id, newWebsite);
-            if(website) {
-                navigateToWebsites();
-            } else {
-                vm.error = "Unable to update website!"
-            }
+        function updateWebsite(website) {
+             WebsiteService.updateWebsite(vm.websiteId, website)
+            .then(res => {
+                $location.url(`/user/${vm.userId}/website`);
+                }, res => {
+                vm.errorUpdating = true;
+            });
         }
 
         function deleteWebsite() {
-            WebsiteService.deleteWebsite(vm.website._id);
-            navigateToWebsites();
-        }
-
-        function navigateToWebsites() {
-            var index = $location.path().lastIndexOf("/");
-            $location.url($location.path().substring(0, index));
+            WebsiteService.deleteWebsite(vm.websiteId)
+            .then( res => {
+                $location.url(`/user/${vm.userId}/website`);
+                }, res => {
+                    vm.errorDeleting = true;
+            });
         }
     }
 })();

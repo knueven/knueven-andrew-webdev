@@ -1,15 +1,12 @@
-'use strict';
-
 module.exports = app => {
-  app.post( `/api/user/:userId/website`, createWebsite ),
-  app.get( `/api/user/:userId/website`, findAllWebsitesByUser ),
-  app.get( `/api/website/:websiteId`, findWebsiteById ),
-  app.put( `/api/$website/:websiteId`, updateWebsite ),
-  app.delete( `/api/website/:websiteId`, deleteWebsite )
+  app.post(`/api/user/:userId/website`, createWebsite),
+  app.get(`/api/user/:userId/website`, findAllWebsitesByUser),
+  app.get( `/api/website/:websiteId`, findWebsiteById),
+  app.put(`/api/website/:websiteId`, updateWebsite),
+  app.delete(`/api/website/:websiteId`, deleteWebsite)
 };
 
-
-var websites = [
+let websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem",  },
         { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem",  },
         { "_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem",  },
@@ -22,7 +19,7 @@ function createWebsite(req, res) {
   var website = req.body.website;
   var userId = req.params.userId;
 
-  website._id = Math.random();
+  website._id = '' + Math.floor( Math.random() * 1000 );
   website.developerId = userId;
   websites.push(website);
   res.json(website);
@@ -46,24 +43,23 @@ function findWebsiteById(req, res) {
 };
 
 function updateWebsite(req, res) {
-  var websiteId = req.params.websiteId;
-  var website = req.body.website;
-  var websiteIndex = websites.findIndex(site => {
-    return (site._id === websiteId);
-  });
-
-  website = Object.assign({}, websites[ websiteIndex ], website);
-
-  if (websiteIndex !== -1) {
-    websites.splice( websiteIndex, 1, website );
-    res.json(website);
-  } else {
-    return createWebsite(req, res);
-  }
+    var websiteId = req.params.websiteId;
+    var website = req.body.website;
+    var updatedWebsite = null;
+    for (var w in websites) {
+        var curWebSite = websites[w];
+        if (curWebSite._id === websiteId) {
+            curWebSite.name = website.name;
+            curWebSite.description = website.description;
+            updatedWebsite = curWebSite;
+            break;
+        }
+    }
+    res.json(updatedWebsite);
 };
 
 function deleteWebsite(req, res) {
-  let websiteId = req.params.websiteId;
+  var websiteId = req.params.websiteId;
 
   websites = websites.filter( site => {
     return (site._id !== websiteId);

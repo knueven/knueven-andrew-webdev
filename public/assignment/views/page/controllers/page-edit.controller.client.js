@@ -8,32 +8,38 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        var userId = $routeParams.uid;
-        vm.userId = userId;
+        vm.userId = $routeParams['uid'];
+        vm.websiteId = $routeParams['wid'];
+        vm.pageId = $routeParams['pid'];
 
         function init() {
-            vm.pages = PageService.findPageByWebsiteId($routeParams.wid);
-            vm.page = PageService.findPageById($routeParams.pid);
+            PageService.findPageById( vm.pageId )
+            .then( res => {
+                vm.page = res.data;
+            }, res => {
+                vm.pageNotFound = true;
+            });
         }
         init();
 
-        function updatePage(newPage) {
-            var page = PageService.updatePage(newPage._id, newPage);
-            if(page) {
-                navigateToPages();
-            } else {
-                vm.error = "Failed to create new page";
-            }
-        }
+        function updatePage( page ) {
+            PageService.updatePage( vm.pageId, page )
+            .then( res => {
+                $location.url(`/user/${ vm.userId }/website/${ vm.websiteId }/page`);
+            }, res => {
+                vm.errorUpdating = true;
+            });
 
-        function deletePage() {
-            PageService.deletePage(vm.page._id);
-            navigateToPages();
-        }
+      }
 
-        function navigateToPages() {
-            var index = $location.path().lastIndexOf("/");
-            $location.url($location.path().substring(0, index));
-        }
+      function deletePage() {
+        PageService.deletePage( vm.pageId )
+        .then( res => {
+          $location.url(`/user/${ vm.userId }/website/${ vm.websiteId }/page`);
+        }, res => {
+          vm.errorDeleting = true;
+        });
+
+      }
     }
 })();

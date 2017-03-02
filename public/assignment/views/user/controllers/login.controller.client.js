@@ -13,12 +13,16 @@
         init();
 
         function login(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if (loginUser != null) {
-                $location.url('/user/' + loginUser._id);
-            } else {
-                vm.error = 'User not found';
-            }
+
+            vm.error = false;
+            var loginUser = UserService.findUserByCredentials(user.username, user.password)
+            .then(res =>{
+                user = res.data;
+
+                $location.url(`/user/${ user._id }/`);
+            }, res => {
+                vm.error = true;
+            });
         }
     }
 })();

@@ -11,18 +11,22 @@
         vm.userId = userId;
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
+            WebsiteService.findWebsitesByUser(vm.userId)
+            .then(res => {
+                vm.websites = res.data;
+                }, res => {
+                vm.error = true;
+            });
         }
         init();
 
-        function createWebsite(newWebsite) {
-            var website = WebsiteService.createWebsite(userId, newWebsite);
-            if(website) {
-                var index = $location.path().lastIndexOf("/");
-                $location.url($location.path().substring(0, index));
-            } else {
-                vm.error = "Failed to create new website";
-            }
-        }
+        function createWebsite( website ) {
+            WebsiteService.createWebsite( vm.userId, website )
+            .then( res => {
+                $location.url(`/user/${ vm.userId }/website`);
+            }, res => {
+            vm.errorCreating = true;
+        });
     }
+}
 })();

@@ -10,18 +10,22 @@
         function init() {
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            PageService.findPagesByWebsiteId( vm.websiteId )
+            .then( res => {
+            vm.pages = res.data;
+            }, res => {
+                vm.error = true;
+            });
         }
         init();
 
         function create(newPage) {
-            var page = PageService.createPage(vm.websiteId, newPage);
-            if(page) {
-                var index = $location.path().lastIndexOf("/");
-                $location.url($location.path().substring(0, index));
-            } else {
-                vm.error = "Failed to create new page";
-            }
+            PageService.createPage( vm.websiteId, newPage )
+            .then( res => {
+            $location.url(`/user/${ vm.userId }/website/${ vm.websiteId }/page`);
+            }, res => {
+                vm.errorCreating = true;
+            });
         }
     }
 })();

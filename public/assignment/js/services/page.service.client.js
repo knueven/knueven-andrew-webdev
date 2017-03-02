@@ -16,7 +16,7 @@
   function createPage(websiteId, page) {
     return $http({
       method: 'POST',
-      url: `/api/website/${ websiteId }/page`,
+      url: `/api/website/${websiteId}/page`,
       data: {page: page}
     });
   };
@@ -24,7 +24,7 @@
   function findPagesByWebsiteId(websiteId) {
     return $http({
       method: 'GET',
-      url: `/api/website/${ websiteId }/page`,
+      url: `/api/website/${websiteId}/page`,
     });
   };
 
@@ -35,17 +35,17 @@
     });
   };
 
-  function updatePage( pageId, page ) {
+  function updatePage(pageId, page) {
     return $http({
       method: 'PUT',
       url: `/api/website/${pageId}`,
       data: {
-        page
+        page: page
       }
     });
   };
 
-  function deletePage( pageId ) {
+  function deletePage(pageId) {
     return $http({
       method: 'DELETE',
       url: `/api/website/${pageId}`

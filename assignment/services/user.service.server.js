@@ -1,15 +1,12 @@
-'use strict';
-
 module.exports = app => {
-  app.post( `/api/user`, createUser ),
-  app.get( `/api/user?username=username`, findUserByUsername ),
-  app.get( `/api/user?username=username&password=password`, findUserByCredentials ),
-  app.get( `/api/user/:userId`, findUserById ),
-  app.put( `/api/user/:userId`, updateUser)
-  app.delete( `/api/user/:userId`, deleteUser)
+  app.post(`/api/user`, createUser),
+  app.get(`/api/user`, findUserByAuthType),
+  app.get(`/api/user/:userId`, findUserById),
+  app.put(`/api/user/:userId`, updateUser)
+  app.delete(`/api/user/:userId`, deleteUser)
 };
 
-let users = [
+var users = [
             {
                 _id: "123",
                 username: "alice",
@@ -47,13 +44,21 @@ let users = [
 
 function createUser(req, res) {
     var user = req.body.user;
-    user._id = Math.random();
+    user._id = '' + Math.floor( Math.random() * 1000 );
     users.push(user);
     res.json(user);
 };
 
-function findUserByUsername(username) {
-    var user = users.find(function (u) {
+function findUserByAuthType(req, res) {
+  if (req.query.password) {
+    return findUserByCredentials(req, res);
+  } else {
+    return findUserByUsername(req, res);
+  }
+}
+
+function findUserByUsername(req, res) {
+    var user = users.find(function(u) {
         return u.username == req.query.username;
     });
     if(user)
@@ -73,11 +78,9 @@ function findUserByCredentials(req, res) {
         res.sendStatus(404);
     }
     res.json(user);
-};
-            
-    
+};   
 
-function findUserById(uid) {
+function findUserById(req, res) {
     var userId = req.query.userId;
     var user = users.find(function (u) {
         return u._id == userId;
@@ -87,8 +90,6 @@ function findUserById(uid) {
     }
     res.json(user);
 };
-
-
 
 function updateUser(req, res) {
     var userId = req.params.userId;
