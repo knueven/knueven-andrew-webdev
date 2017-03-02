@@ -1,8 +1,8 @@
 ;( function() {
 
-  angular.module('jgaDirectives', []).directive('jgaSortable', jgaSortable);
+  angular.module('WebAppMaker', []).directive('wbdvSortable', sortableDir);
 
-  function jgaSortable() {
+  function sortableDir() {
 
     function onLink(scope, elem, attrs) {
       let startIndex = -1;
@@ -28,7 +28,7 @@
     };
   }
 
-  function SortableController(WidgetService, $routeParams) {
+  function SortableConroller(WidgetService, $routeParams) {
     let vm = this;
 
     vm.sort = sort;

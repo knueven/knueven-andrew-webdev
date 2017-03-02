@@ -1,4 +1,3 @@
-'use strict';
 
 module.exports = app => {
   app.post( `/api/page/:pageId/widget`, createWidget ),
@@ -14,7 +13,7 @@ var multer = require('multer');
 var upload = multer( { dest: __dirname + '/../../public/uploads' } );
 
 
-var widgets = [
+let widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
             { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
             { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%", "url": "http://lorempixel.com/400/200/"},
@@ -24,9 +23,6 @@ var widgets = [
             "url": "https://www.youtube.com/embed/rStL7niR7gs" },
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
-
- var options =
-        [1, 2, 3, 4, 5, 6];
 
 
 function createWidget(req, res) {

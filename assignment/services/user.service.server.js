@@ -6,7 +6,7 @@ module.exports = app => {
   app.delete(`/api/user/:userId`, deleteUser)
 };
 
-var users = [
+let users = [
             {
                 _id: "123",
                 username: "alice",

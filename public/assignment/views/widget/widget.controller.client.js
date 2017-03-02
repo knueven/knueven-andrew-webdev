@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("EditWidgetController", EditWidgetController)
+        .controller("NewWidgetController", NewWidgetController)
         .controller("WidgetListController", WidgetListController)
-        .controller("NewWidgetController", NewWidgetController);
+        .controller("EditWidgetController", EditWidgetController);
 
     function NewWidgetController(WidgetService, $routeParams, $location) {
         var vm = this;
@@ -11,7 +11,7 @@
         vm.websiteId = $routeParams.wid;
         vm.widgetId = $routeParams.wgid;
         vm.pageId = $routeParams.pid;
-        vm.create = createWidget;
+        vm.createWidget = createWidget;
 
         vm.widgetTypes = [
         {
@@ -28,13 +28,13 @@
         }
       ];
 
-        function createWidget( widgetType ) {
+    function createWidget( widgetType ) {
             WidgetService.createWidget( vm.pageId, { widgetType } )
             .then( res => {
-            let newWidget = res.data;
-            $location.url(`/user/${ vm.userId }/website/${ vm.websiteId }/page/${ vm.pageId }/widget/${ newWidget._id }`);
-            }, res => {
-            vm.errorCreating = true;
+                let newWidget = res.data;
+                $location.url(`/user/${ vm.userId }/website/${ vm.websiteId }/page/${ vm.pageId }/widget/${ newWidget._id }`);
+                }, res => {
+                vm.errorCreating = true;
         });
       }
     };
