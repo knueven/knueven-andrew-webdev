@@ -1,0 +1,17 @@
+<input ng-model="model.widget.text" class="form-control"/>
+
+</select>
+
+<div class="form-group">
+    <label for="widget-html">HTML</label>
+    <div ng-model="model.widget.text"
+         id="widget-html"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                            ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                            ['indent','outdent'],['html']]">
+    </div>
+</div>
+
+<a ng-click="model.updateWidget(model.widget)" class="btn btn-block btn-info">Update</a>
+<a ng-click="model.deleteWidget(model.widget)" class="btn btn-block btn-danger">Delete</a>
