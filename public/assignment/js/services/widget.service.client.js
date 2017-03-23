@@ -60,8 +60,8 @@
         method: 'PUT',
         url: `/api/widget/${pageId}/widget`,
         params: {
-          initial: startIndex,
-          final: finalIndex
+          start: startIndex,
+          end: finalIndex
         }
       });
     }

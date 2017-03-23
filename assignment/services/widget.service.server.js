@@ -1,5 +1,7 @@
 
 module.exports = function(app,model) {
+    var multer = require('multer');
+    var upload = multer( { dest: __dirname + '/../../public/uploads' } );
     app.post( `/api/page/:pageId/widget`, createWidget );
     app.get( `/api/page/:pageId/widget`, findAllWidgetsForPage );
     app.get( `/api/widget/:widgetId`, findWidgetById );
@@ -7,9 +9,7 @@ module.exports = function(app,model) {
     app.delete( `/api/$widget/:widgetId`, deleteWidget );
     app.put( `/api/page/:pageId/widget`, reorderWidget );
     app.post( '/api/upload', upload.single('myFile'), uploadImage );
-
-    var multer = require('multer');
-    var upload = multer( { dest: __dirname + '/../../public/uploads' } );
+    
 
     var widgetModel = model.widgetModel;
     var pageModel = model.pageModel;

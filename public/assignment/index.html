@@ -1,25 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="WebAppMaker">
 <head>
+    <!-- JQuery -->
     <script
     src="https://code.jquery.com/jquery-3.1.1.min.js"
     crossorigin="anonymous"></script>
     <script
     src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     crossorigin="anonymous"></script>
+
+
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Style -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/style.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/textAngular.css">
+
+    <!-- JS stuff -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script src="js/textAngular.min.js"></script>
+    <script src="js/textAngular-rangy.min.js"></script>
+    <script src="js/textAngular-sanitize.min.js"></script>
+
+    <!-- app.js -->
     <script src="js/app.js"></script>
     <script src="js/config.js"></script>
+
+    <!-- Services -->
     <meta charset="UTF-8">
     <title>Assignment Home Page</title>
     <script src="js/services/user.service.client.js"></script>
     <script src="js/services/website.service.client.js"></script>
     <script src="js/services/page.service.client.js"></script>
     <script src="js/services/widget.service.client.js"></script>
+    <script src="directives/wam-sortable.js"></script>
     <script src="views/user/user.controller.client.js"></script>
     <script src="views/website/website.controller.client.js"></script>
     <script src="views/page/page.controller.client.js"></script>
