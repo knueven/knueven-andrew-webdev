@@ -1,12 +1,24 @@
 module.exports = function(app, model) {
-    app.post(`/api/user`, createUser);
-    app.get(`/api/user`, findUserByAuthType);
-    app.get(`/api/user/:userId`, findUserById);
-    app.put(`/api/user/:userId`, updateUser);
-    app.delete(`/api/user/:userId`, deleteUser);
+    var passport      = require('passport');
+    var auth = authorized;
+    app.post  ('/api/login', passport.authenticate('local'), login);
+    app.post  ('/api/logout',         logout);
+    app.post  ('/api/register',       register);
+    app.post(`/api/user`, auth, createUser);
+    app.get(`/api/user`, auth, findUserByAuthType);
+    app.get(`/api/user/:userId`, auth, findUserById);
+    app.put(`/api/user/:userId`, auth, updateUser);
+    app.delete(`/api/user/:userId`, auth, deleteUser);
 
     var userModel = model.userModel; 
 
+    function authorized (req, res, next) {
+    if (!req.isAuthenticated()) {
+        res.send(401);
+        } else {
+        next();
+        }
+    }
 
     function createUser(req, res) {
         userModel
