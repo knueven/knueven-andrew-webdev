@@ -2,32 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Andrew Knueven</title>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
+    <div id="top" class="jumbotron">
+    <div class="container">
+      <h1>Andrew Knueven</h1>
+      <p>Northeastern University 2017</p>
+      <p class="icons text-center">
+        <a></a>
+        <a href="https://github.com/knuevena"><i class="fa fa-github-square fa-3x"></i></a>
+        <a href="https://www.linkedin.com/in/knueven"><i class="fa fa-linkedin-square fa-3x"></i></a>
+        <a href="mailto:knuckles@ccs.neu.edu"><i class="fa fa-envelope-square fa-3x"></i></a>
+      </p>
+      <p class="icons text-center">
+        <a href="assignment/index.html"><i class="fa fa-book fa-2x"></i></a>
+        <a href="project/index.html"><i class="fa fa-briefcase fa-2x"></i></a>
+      </p>
+    </div>
+    <div id="overlay"></div>
+  </div>
 
-    <h2>
-       <i>By Andrew Knueven</i>
-    </h2>
 
-    <h2>Some links!</h2>
-    <ul>
-        <li>
-            <a href="website/index.html">Personal Website</a>
-        </li>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/knuevena/knueven-andrew-webdev">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script>
+  // Putting this here for now since there's so little JS for this site
+  $(document).ready(function() {
+    $('.jumbotron').css({ height: ($(window).height()) +'px' });
+    $(window).resize(function() {
+      $('.jumbotron').css({ height: ($(window).height()) +'px' });
+    });
+  });
+</script>
 </body>
 </html>
