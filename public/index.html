@@ -21,8 +21,8 @@
         <a href="mailto:knuckles@ccs.neu.edu"><i class="fa fa-envelope-square fa-3x"></i></a>
       </p>
       <p class="icons text-center">
-        <a href="assignment/index.html"><i class="fa fa-book fa-2x"></i></a>
-        <a href="project/index.html"><i class="fa fa-briefcase fa-2x"></i></a>
+        <a href="assignment/index.html" data-toggle="tooltip" data-placement="bottom" title="Assignment"><i class="fa fa-book fa-2x"></i></a>
+        <a href="project/index.html" data-toggle="tooltip" data-placement="bottom" title="Project"><i class="fa fa-briefcase fa-2x"></i></a>
       </p>
     </div>
     <div id="overlay"></div>
@@ -30,6 +30,7 @@
 
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
   // Putting this here for now since there's so little JS for this site
   $(document).ready(function() {
@@ -38,6 +39,9 @@
       $('.jumbotron').css({ height: ($(window).height()) +'px' });
     });
   });
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+    });
 </script>
 </body>
 </html>
