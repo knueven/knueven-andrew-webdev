@@ -23,9 +23,9 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-var mongoose = require('mongoose');
-var connectionString = 'mongodb://127.0.0.1:27017/PhotoMapsDB';
-var db = mongoose.createConnection(connectionString);
+//var mongoose = require('mongoose');
+//var connectionString = 'mongodb://127.0.0.1:27017/PhotoMapsDB';
+//var db = mongoose.createConnection(connectionString);
 
 require ("./test/app.js")(app);
 require ("./assignment/app.js")(app);
