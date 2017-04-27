@@ -1,4 +1,5 @@
 var express = require('express');
+require('dotenv').config();
 var app = express();
 
 var bodyParser = require('body-parser');
@@ -14,7 +15,7 @@ var session       = require('express-session');
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({
-    secret: 'this is the secret',
+    secret: process.env.PASSPORT_SECRET,
     resave: true,
     saveUninitialized: true
 }));
@@ -22,8 +23,14 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require ("./test/app.js")(app);
-require ("./assignment/app.js")(app);
+var mongoose = require('mongoose');
+var connectionString = 'mongodb://127.0.0.1:27017/PhotoMapsDB';
+var db = mongoose.createConnection(connectionString);
+mongoose.connect(connectionString);
+
+//require ("./test/app.js")(app);
+//require ("./assignment/app.js")(app);
+require('./public/project/server/app.js')(app, db, mongoose);
 
 var port = process.env.PORT || 3000;
 
