@@ -28,9 +28,9 @@ var connectionString = 'mongodb://127.0.0.1:27017/PhotoMapsDB';
 var db = mongoose.createConnection(connectionString);
 mongoose.connect(connectionString);
 
-//require ("./test/app.js")(app);
-//require ("./assignment/app.js")(app);
-require('./public/project/server/app.js')(app, db, mongoose);
+require ("./test/app.js")(app);
+require ("./assignment/app.js")(app);
+//require('./public/project/server/app.js')(app, db, mongoose);
 
 var port = process.env.PORT || 3000;
 
